@@ -13,7 +13,7 @@ cd point_inside
 
 2. Run `npm i` to fetch all of the dependencies.
 3. Run `npm start` to fire up the app.
-   ![image](https://user-images.githubusercontent.com/47146346/165659338-85b91535-d33a-49c4-a5dd-41684bf4f1cc.png)
+![image](https://user-images.githubusercontent.com/47146346/165659623-6d75a5fc-6a34-40b1-9846-4a381ee09d4a.png)
 
 ## Known areas of concern
 
