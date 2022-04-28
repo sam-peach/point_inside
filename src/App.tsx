@@ -5,20 +5,20 @@ import { timezoneSecondsToHours } from "./utils";
 import { TimezoneData } from "./types";
 
 function App() {
-  const [long, setLong] = useState<number>();
-  const [lat, setLat] = useState<number>();
+  const [lat, setLat] = useState<number | null>();
+  const [long, setLong] = useState<number | null>();
   const [timezoneData, setTimezoneData] = useState<TimezoneData>();
 
   useEffect(() => {
     const fetchTimezone = async () => {
       if (lat && long) {
         try {
-          const { data } = await getTimezone({ long: long, lat: lat });
-          const { gmtOffset, countryName } = data;
+          const { data } = await getTimezone({ lat: lat, long: long });
+          const { gmtOffset, zoneName } = data;
 
           setTimezoneData({
             timezone: timezoneSecondsToHours(gmtOffset),
-            countryName: countryName === "" ? "somewhere remote" : countryName,
+            zoneName: zoneName === "" ? "unknown zone" : zoneName,
           });
         } catch (err) {
           console.error(">>>> ", err);
@@ -47,7 +47,7 @@ function App() {
           step={0.1}
           debounce={300}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setLat(Number(e.target.value));
+            setLat(parseFloat(e.target.value));
           }}
         />
         <NumberInput
@@ -57,17 +57,17 @@ function App() {
           step={0.1}
           debounce={300}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            console.log(e.target.value);
             setLong(Number(e.target.value));
           }}
         />
       </Box>
-
       <Box style={{ justifyContent: "center" }}>
         {lat && long && timezoneData
           ? `Your timezone for ${
-              timezoneData.countryName
+              timezoneData.zoneName
             } is ${timezoneData.timezone.toFixed(2)}`
-          : "Please enter you position"}
+          : "Please enter your position"}
       </Box>
     </div>
   );

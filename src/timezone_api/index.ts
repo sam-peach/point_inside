@@ -3,7 +3,7 @@ import { Position } from "../types";
 
 export const getTimezone = async (
   pos: Position
-): Promise<{ data: { gmtOffset: number; countryName: string } }> => {
+): Promise<{ data: { gmtOffset: number; zoneName: string } }> => {
   const queryString = buildQueryString(pos);
   return axios.get(`${process.env.REACT_APP_TIMEZONE_ENDPOINT}?${queryString}`);
 };

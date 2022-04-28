@@ -1,9 +1,9 @@
 export type Position = {
-  long: number;
   lat: number;
+  long: number;
 };
 
 export type TimezoneData = {
   timezone: number;
-  countryName: string;
+  zoneName: string;
 };
