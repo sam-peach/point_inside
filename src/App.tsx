@@ -18,7 +18,7 @@ function App() {
 
           setTimezoneData({
             timezone: timezoneSecondsToHours(gmtOffset),
-            countryName,
+            countryName: countryName === "" ? "somewhere remote" : countryName,
           });
         } catch (err) {
           console.error(">>>> ", err);
