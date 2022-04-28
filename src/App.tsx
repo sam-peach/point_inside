@@ -41,16 +41,6 @@ function App() {
         }}
       >
         <NumberInput
-          name="Longitude"
-          min={-180}
-          max={180}
-          step={0.1}
-          debounce={300}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setLong(Number(e.target.value));
-          }}
-        />
-        <NumberInput
           name="Latitude"
           min={-90}
           max={90}
@@ -60,11 +50,21 @@ function App() {
             setLat(Number(e.target.value));
           }}
         />
+        <NumberInput
+          name="Longitude"
+          min={-180}
+          max={180}
+          step={0.1}
+          debounce={300}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setLong(Number(e.target.value));
+          }}
+        />
       </Box>
 
       <Box style={{ justifyContent: "center" }}>
         {lat && long && timezoneData
-          ? `You timezone for ${
+          ? `Your timezone for ${
               timezoneData.countryName
             } is ${timezoneData.timezone.toFixed(2)}`
           : "Please enter you position"}
